@@ -70,11 +70,13 @@ public class Graph implements Serializable {
 	
 	public void randomizeWeights() {
 		
+		/* for debugging only
 		int[] weights = {11,22,33,44,55,
 						 66,77,88,99,12,
 						 23,34,45,56,67,
 						 78,89,13,24,35,
 						 46,57,68,79};
+		*/
 		
 		int[][] check = new int[N][N];
 		
@@ -86,7 +88,7 @@ public class Graph implements Serializable {
 		   
 		int weight;
 		    
-		int count = 0;
+		//int count = 0;
 		for (int i1 = 0; i1 < N; i1++) {// for each vertex
 			Vertex u = this.vertices[i1];
 			Vertex v;
@@ -95,8 +97,8 @@ public class Graph implements Serializable {
 		    for (int k = 0; k < conn.size(); k++) {
 		    	int i2 = conn.get(k).getTo();
 		    	v = this.vertices[i2];
-		    	//weight = (int)Math.floor(Math.random() * 20) + 2;// range
-		    	weight = weights[count++ % 22];
+		    	weight = (int)Math.floor(Math.random() * 20) + 2;// range
+		    	//weight = weights[count++ % 22];
 		    	if (check[i1][i2] == 0 && check[i2][i1] == 0) {
 		    		System.out.println("set weight " + weight + " to edge " 
 		    					+ i1 + " " 
@@ -107,10 +109,7 @@ public class Graph implements Serializable {
 		    		
 		    		List<WeightedEdge> conn2 = v.getAdjacency();
 		    		int k2 = v.getAdjIndex(i1);
-		    		/*
-		    		System.out.println("grouble " + i1 + " " + " " 
-		    						+ i2 + " " + v.getAdjIndex(i1));
-		    		*/
+		    		
 		    		conn2.get(k2).setWeight(weight);
 		    		    		
 		    		check[i1][i2] = 1;
@@ -124,3 +123,4 @@ public class Graph implements Serializable {
 	
 	
 }
+
