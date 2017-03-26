@@ -11,5 +11,8 @@ Then a minimum spanning tree is build stepwise (Java side) and the graph is redr
 
 When deployed on Tomcat the context root is minimum-spanning-tree.
 
+For an animated demonstration please visit this repository:
 
-Dominique Ubersefld, Cachan, France   
+https://github.com/dubersfeld/kruskal-anim
+
+Dominique Ubersfeld, Cachan, France   
