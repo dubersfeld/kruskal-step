@@ -70,7 +70,8 @@ public class Graph implements Serializable {
 	
 	public void randomizeWeights() {
 		
-		/* for debugging only
+		/* for debugging only */
+		/*
 		int[] weights = {11,22,33,44,55,
 						 66,77,88,99,12,
 						 23,34,45,56,67,
@@ -117,10 +118,8 @@ public class Graph implements Serializable {
 		    	}
 		    }// for  
 		}// for
-	
-		
+				
 	}// randomizeWeights
 	
 	
 }
-

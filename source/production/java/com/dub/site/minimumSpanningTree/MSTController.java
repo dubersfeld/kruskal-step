@@ -81,10 +81,8 @@ public class MSTController {
 		// find the largest component
 	   
 		MSTResponse mstResponse = new MSTResponse();
-		//mstResponse.setGraph(comp);
 		mstResponse.setStatus(MSTResponse.Status.INIT);
 		
-		// refactoring starts here
 		mstResponse.setSnapshot(snapshot);
 		
 		// attach component to session context
@@ -108,22 +106,20 @@ public class MSTController {
 		HttpSession session = request.getSession();
 		MSTGraph comp = (MSTGraph)session.getAttribute("comp");
 		
-		//StepResult result = comp.searchStep();
 		comp.searchStep();
 		
 		JSONSnapshot snapshot = graphServices.GraphToJSON(comp);
 		StepResult result = new StepResult();
 		result.setSnapshot(snapshot);
 		if (comp.isFinished()) {
-			result.setStatus(Status.FINISHED);
+			result.setStatus(Status.FINISHED);// search completed
 		} else {
-			result.setStatus(Status.STEP);
+			result.setStatus(Status.STEP);// one more step
 		}
 		
 		snapshot.displayVertices();
 		
 		return result;
 	}
-	
-	
+
 }

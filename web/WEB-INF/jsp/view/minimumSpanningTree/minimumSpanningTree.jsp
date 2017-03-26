@@ -107,8 +107,8 @@ function canvasApp() {
   		{"a0": [0, 0], "b0": [1, 0], "c0": [2, 0], "d0": [3, 0], "e0": [4, 0], "f0": [5, 0], "g0": [6, 0],
 		 "a1": [0, 1], "b1": [1, 1], "c1": [2, 1], "d1": [3, 1], "e1": [4, 1], "f1": [5, 1], "g1": [6, 1],
 		 "a2": [0, 2], "b2": [1, 2], "c2": [2, 2], "d2": [3, 2], "e2": [4, 2], "f2": [5, 2], "g2": [6, 2],  
-		 "a3": [0, 3], "b3": [1, 4], "c3": [2, 3], "d3": [3, 3], "e3": [4, 3], "f3": [5, 3], "g3": [6, 3],
-		 "a4": [0, 4], "b4": [1, 5], "c4": [2, 4], "d4": [3, 4], "e4": [4, 4], "f4": [5, 4], "g4": [6, 4]
+		 "a3": [0, 3], "b3": [1, 3], "c3": [2, 3], "d3": [3, 3], "e3": [4, 3], "f3": [5, 3], "g3": [6, 3],
+		 "a4": [0, 4], "b4": [1, 4], "c4": [2, 4], "d4": [3, 4], "e4": [4, 4], "f4": [5, 4], "g4": [6, 4]
   };
   
 
@@ -116,7 +116,6 @@ function canvasApp() {
   function Graph(N) {// A Weighted Graph contains a vector of N vertices
     this.mV = [];
     this.mAdj = [];// indexes of adjacent nodes with weight
-    this.mAdjList = [];// adj lists
     this.mE = [];// all edges, array of arrays
     this.init = function() {
       for (var i = 0; i < N; i++) {
@@ -537,11 +536,6 @@ function canvasApp() {
       graph.mAdj[i] = [];
     }
 
-    // creating empty AdjList
-    for (var i = 0; i < graph.mV.length; i++) {
-      graph.mAdjList.push(new AdjList(null));
-    }
-
     while (edges < Nedges) {
       index1 = Math.floor(Math.random() * N);// range
       index2 = index1;
@@ -556,18 +550,17 @@ function canvasApp() {
         // check edge already present
         if (check[index1][index2] == 0 && check[index2][index1] == 0) {
           graph.mAdj[index1].push(index2);// symmetry
-          graph.mAdjList[index1].append(graph.mV[index2]);// append vertex, not index
           check[index1][index2] = 1;// symmetry
           graph.mAdj[index2].push(index1);
-          graph.mAdjList[index2].append(graph.mV[index1]);// append vertex, not index
           check[index2][index1] = 1;
           edges++;
         }        
       }
     } 
+    
    
-    /*
     // check symmetry
+    /*
     graph.mAdj[0] = [8];
     graph.mAdj[1] = [9, 7 ];
     graph.mAdj[2] = [9];
@@ -604,14 +597,8 @@ function canvasApp() {
     graph.mAdj[32] = [26, 31 ];
     graph.mAdj[33] = [25, 27 ];
     graph.mAdj[34] = [27];
-    */    
-
-    for (var i1 = 0; i1 < N; i1++) {// each vertex
-    	for (var i2 = 0; i2 < graph.mAdj[i1].length; i2++) {
-    		 graph.mAdjList[i1].append(graph.mV[graph.mAdj[i1][i2]]);    	
-    	}
-    }
-    
+    */
+       
 	$('#findComp').find(':submit')[0].disabled = false;
 	$('#searchStep').find(':submit')[0].disabled = true;
     console.log("randomizeUndir completed");
@@ -697,6 +684,7 @@ function canvasApp() {
 		var message = {"type":"STEP"};
 		
 		$('#findComp').find(':submit')[0].disabled = true;
+		$('#searchStep').find(':submit')[0].disabled = true;
 		
 		 $.ajax({
 				type : "POST",
@@ -755,6 +743,7 @@ function canvasApp() {
 							$('#searchStep').find(':submit')[0].disabled = true;
 							$('#costDisplay').text("Final cost " + cost);
 						} else {
+							$('#searchStep').find(':submit')[0].disabled = false;
 							$('#costDisplay').text("Partial cost " + cost);
 						}
 						
@@ -763,10 +752,7 @@ function canvasApp() {
 						} else {
 							$('#acceptDisplay').text('Edge rejected');
 						}
-					
-						
-					
-					
+							
 					}// if  					
 				},
 					
