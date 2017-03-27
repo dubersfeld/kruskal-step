@@ -809,7 +809,7 @@ The partial cost is displayed on each step.
 </p>
   </header>
 
-  <section id="display">
+  <div id="display">
     <canvas id="canvas" width="700" height="600">
       Your browser does not support HTML 5 Canvas
     </canvas>
@@ -817,9 +817,9 @@ The partial cost is displayed on each step.
       <p>Dominique Ubersfeld, Cachan, France</p>
     </footer> 
  
-  </section>
+  </div>
 
-  <section id="controls">
+  <div id="controls">
     <div id="Kruskal">
       <p>Click here to start Minimum Spanning Tree building process</p>
       <form name="findComp" id="findComp">
@@ -846,7 +846,7 @@ The partial cost is displayed on each step.
     </div> 
     
     
-  </section>
+  </div>
 
 </body>
 
