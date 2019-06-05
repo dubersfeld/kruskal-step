@@ -12,7 +12,7 @@ Then a minimum spanning tree is build stepwise (Java side) and the graph is redr
 
 To launch the demo run this command in project directory: `mvn spring-boot:run`.
 
-When the application has started hit the browser on URL `localhost:8080/minimum-spanning-tree`.
+When the application has started open a browser and hit URL `localhost:8080/minimum-spanning-tree`.
 
 Here are some screenshots that can be seen during this demo.
 
